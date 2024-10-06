@@ -1,0 +1,5 @@
+.inputField {
+  width: 100%;
+  background-color: var(--inputColor);
+  margin-bottom: 100rem;
+}

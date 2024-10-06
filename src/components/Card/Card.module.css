@@ -1,0 +1,73 @@
+.cardContainer {
+  width: 100%;
+  display: flex;
+  max-width: 50rem;
+  justify-content: flex-start;
+  background-color: var(--backgroundColorLight);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.cardContainer:hover {
+  background-color: var(--hoverColorLight);
+  transition: 0.5s ease-in-out;
+}
+
+.cardContent {
+  padding: 1.2rem;
+}
+
+.codContainer {
+  display: inline-block;
+  background-color: var(--primaryColor);
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-top-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  padding: 0.4rem;
+}
+
+.codText {
+  color: var(--fontColorLight);
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  color: var(--fontColorDark);
+  font-weight: bold;
+  margin-top: 0.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.cardBody {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 0.3rem;
+  color: var(--fontColor);
+  font-weight: 400;
+  font-size: 0.92rem;
+}
+
+.cardBodyText {
+  margin-left: 0.3rem;
+}
+
+.cardButtonAction {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 0;
+  bottom: 0;
+  margin: 0.4rem;
+  color: var(--fontColorDark);
+}
+
+.iconAction:hover {
+  color: red;
+}

@@ -1,0 +1,44 @@
+.formContainer {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  background-color: var(--backgroundColorLight);
+}
+
+.formContent {
+  width: 100%;
+  margin: 1rem;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 1.7rem;
+  background-color: white;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+}
+
+.imageContainer {
+  margin-bottom: 2rem;
+}
+
+.inputGroup {
+  width: 100%;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
+}
+
+.inputField {
+  margin-bottom: 1rem;
+}
+
+.inputCustom {
+  background-color: var(--inputColor);
+  width: 100%;
+}
+
+.inputCustom label {
+  color: var(--fontColor);
+}

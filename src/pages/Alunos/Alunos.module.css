@@ -1,0 +1,34 @@
+.container {
+  width: 100%;
+  padding: 2rem;
+}
+
+.gridContainer {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+}
+
+.gridColumn {
+  margin: 0.8rem;
+}
+
+@media screen and (max-width: 768px) {
+  .gridContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .gridColumn {
+    margin: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
