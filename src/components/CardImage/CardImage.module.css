@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 8rem;
+  width: 100%;
+  border-radius: 0.6rem;
+}
+
+.content:hover {
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  opacity: 90%;
+}
+
+.imageContainer {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.imageContainer img {
+  width: 100%;
+  max-height: 15rem;
+  object-fit: cover;
+  height: fit-content;
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
+}
+
+.codContainer {
+  position: absolute;
+  background-color: white;
+  padding: 0.5rem;
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: var(--fontColorDark);
+  border-top-left-radius: 0.6rem;
+}
+
+.cardInfoContainer {
+  display: flex;
+  padding: 1rem;
+  justify-content: flex-start;
+  flex-direction: column;
+  color: var(--fontColor);
+  gap: 0.1rem;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--fontColorDark);
+  margin-bottom: 0.3rem;
+}

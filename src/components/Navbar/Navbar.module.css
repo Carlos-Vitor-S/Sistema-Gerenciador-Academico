@@ -17,6 +17,16 @@
   padding: 0.5rem;
 }
 
+.logoContainer {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.logoContainer img:hover {
+  cursor: pointer;
+}
+
 .rightContent {
   display: flex;
   justify-content: flex-end;
@@ -34,13 +44,31 @@
 .navBarItem {
   padding-left: 1rem;
   padding-right: 1rem;
+  display: flex;
+  align-items: center;
 }
 
-.navBarItem:hover {
+.linkItem {
+  text-decoration: none;
+  color: inherit;
+}
+
+.linkItem:hover {
+  text-decoration: none;
   cursor: pointer;
-  text-decoration: underline;
   color: var(--hoverColor);
+  border-bottom: 2px solid white;
   transition: 1s ease-out;
+}
+
+a {
+  text-decoration: none;
+}
+
+.activeNavBarItem {
+  font-weight: bold;
+  color: inherit;
+  border-bottom: 2px solid white;
 }
 
 .avatar:hover {

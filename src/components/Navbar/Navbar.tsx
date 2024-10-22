@@ -1,13 +1,64 @@
 import css from "./Navbar.module.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import logo from "../../assets/fabtech-logo-white-small.png";
+import { Link, useLocation } from "react-router-dom";
 export default function NavBar() {
+  const location = useLocation();
   return (
     <div className={css.container}>
       <div className={css.leftContent}>
-        <span className={css.navBarItem}>Alunos</span>
-        <span className={css.navBarItem}>Cursos</span>
-        <span className={css.navBarItem}>Contratos</span>
-        <span className={css.navBarItem}>Relatórios</span>
+        <span className={css.logoContainer}>
+          <img src={logo} alt={logo} />
+        </span>
+
+        <span className={css.navBarItem}>
+          <Link
+            to="/alunos"
+            className={
+              location.pathname == "/alunos"
+                ? css.activeNavBarItem
+                : css.linkItem
+            }
+          >
+            Alunos
+          </Link>
+        </span>
+        <span className={css.navBarItem}>
+          <Link
+            to="/cursos"
+            className={
+              location.pathname == "/cursos"
+                ? css.activeNavBarItem
+                : css.linkItem
+            }
+          >
+            Cursos
+          </Link>
+        </span>
+        <span className={css.navBarItem}>
+          <Link
+            to="/contratos"
+            className={
+              location.pathname == "/contratos"
+                ? css.activeNavBarItem
+                : css.linkItem
+            }
+          >
+            Contratos
+          </Link>
+        </span>
+        <span className={css.navBarItem}>
+          <Link
+            to="/relatorios"
+            className={
+              location.pathname == "/relatorios"
+                ? css.activeNavBarItem
+                : css.linkItem
+            }
+          >
+            Relatórios
+          </Link>
+        </span>
       </div>
       <div className={css.rightContent}>
         <span>
