@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import Input from "../../components/Input/Input";
 
 function Home() {
-  return <div></div>;
+  return <div>Home Page</div>;
 }
 
 export default Home;

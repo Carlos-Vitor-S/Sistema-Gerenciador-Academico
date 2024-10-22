@@ -1,0 +1,13 @@
+.container {
+  margin-bottom: 2rem;
+
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.inputField {
+  width: 100%;
+  max-width: 20rem;
+}
