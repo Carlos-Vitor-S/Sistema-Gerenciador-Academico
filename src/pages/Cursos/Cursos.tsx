@@ -21,7 +21,9 @@ const Cursos = () => {
 
   return (
     <div className={css.container}>
-      <HeaderActions />
+      <div style={{ marginBottom: "2rem" }}>
+        <HeaderActions label={"Cadastrar Curso"} />
+      </div>
       <div className={css.content}>
         {imageData.map((item) => (
           <CardImage image={item.image} />

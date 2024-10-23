@@ -4,7 +4,8 @@ import { TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import CustomButton from "../CustomButton/CustomButton";
-function HeaderActions() {
+import AddIcon from "@mui/icons-material/Add";
+function HeaderActions({ label }) {
   return (
     <div className={css.container}>
       <TextField
@@ -24,6 +25,7 @@ function HeaderActions() {
           },
         }}
       />
+      <CustomButton buttonLabel={label} isMargin={false} icon={<AddIcon />} />
     </div>
   );
 }

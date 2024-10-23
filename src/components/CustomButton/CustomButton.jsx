@@ -1,13 +1,15 @@
 import React from "react";
 import { Button } from "@mui/material";
 import css from "./CustomButton.module.css";
-const CustomButton = ({ buttonLabel, type, isMargin = true }) => {
+
+const CustomButton = ({ buttonLabel, type, isMargin = true, icon = null }) => {
   return (
     <Button
       variant="contained"
       size="large"
       type={type}
-      className={isMargin ? css.buttonContainerMargin : css.buttonContainer}
+      id={isMargin ? css.buttonContainerMargin : css.buttonContainer}
+      endIcon={icon}
     >
       {buttonLabel}
     </Button>
