@@ -9,11 +9,13 @@ import AlunosService from "../../services/AlunosService";
 
 const CreateAluno = () => {
   const { register, handleSubmit, reset } = useForm<Aluno>();
-  const alunoService = AlunosService();
+
   const onSubmit = async (data: Aluno) => {
     try {
+      const alunoService = AlunosService();
       const result = await alunoService.createAluno(data);
       reset();
+      console.log("Enviou os daddos", result);
     } catch (error) {
       console.error("Erro ao cadastrar aluno:", error);
     }
@@ -26,13 +28,26 @@ const CreateAluno = () => {
         <Input label="Cpf" register={register} name="cpf" />
         <Input label="Email" register={register} name="email" />
         <Input label="Telefone" register={register} name="telefone" />
-        <Input label="Cep" register={register} name="cep" />
-        <Input label="Uf" register={register} name="uf" />
-        <Input label="Cidade" register={register} name="cidade" />
-        <Input label="Logradouro" register={register} name="logradouro" />
-        <Input label="Bairro" register={register} name="bairro" />
-        <Input label="Numero" register={register} name="numero" type="number" />
-        <Input label="Complemento" register={register} name="complemento" />
+        <Input label="Cep" register={register} name="endereco.cep" />
+        <Input label="Uf" register={register} name="endereco.uf" />
+        <Input label="Cidade" register={register} name="endereco.cidade" />
+        <Input
+          label="Logradouro"
+          register={register}
+          name="endereco.logradouro"
+        />
+        <Input label="Bairro" register={register} name="endereco.bairro" />
+        <Input
+          label="Numero"
+          register={register}
+          name="endereco.numero"
+          type="number"
+        />
+        <Input
+          label="Complemento"
+          register={register}
+          name="endereco.complemento"
+        />
         <CustomButton buttonLabel="Cadastrar Aluno" type={"submit"} />
       </form>
     </FormContainer>

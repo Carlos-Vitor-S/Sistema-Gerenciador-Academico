@@ -6,33 +6,34 @@ import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import IconButton from "@mui/material/IconButton";
-export default function Card() {
+import { Aluno } from "../../interfaces/aluno";
+export default function Card({ array }: { array: Aluno }) {
   return (
     <div className={css.cardContainer}>
       <div className={css.cardContent}>
         <div className={css.codContainer}>
-          <span className={css.codText}>Cod 0001</span>
+          <span className={css.codText}>Cod 0{array.id}</span>
         </div>
         <div className={css.cardDescription}>
-          <div className={css.cardTitle}>José da Silva</div>
+          <div className={css.cardTitle}>{array.nome}</div>
 
           <div className={css.cardBody}>
             <AccountBoxOutlinedIcon fontSize="small" />
-            <span className={css.cardBodyText}>000.000.000-00</span>
+            <span className={css.cardBodyText}>{array.cpf}</span>
           </div>
           <div className={css.cardBody}>
             <LocationOnOutlinedIcon fontSize="small" />
             <span className={css.cardBodyText}>
-              Av. Murilo Dantas, 300 - Farolândia, Aracaju - SE, 49032-490
+              {`${array.endereco.logradouro}, ${array.endereco.numero} - ${array.endereco.bairro}, ${array.endereco.cidade} - ${array.endereco.uf}, ${array.endereco.cep}`}
             </span>
           </div>
           <div className={css.cardBody}>
             <PhoneInTalkOutlinedIcon fontSize="small" />
-            <span className={css.cardBodyText}>(79) 9 9999-9999</span>
+            <span className={css.cardBodyText}>{array.telefone}</span>
           </div>
           <div className={css.cardBody}>
             <EmailOutlinedIcon fontSize="small" />
-            <span className={css.cardBodyText}>José.dsilva@souunit.com.br</span>
+            <span className={css.cardBodyText}>{array.email}</span>
           </div>
         </div>
         <span className={css.cardButtonAction}>

@@ -26,27 +26,11 @@ const Alunos = () => {
         <HeaderActions label={"Cadastrar Aluno"} />
       </div>
       <div className={css.gridContainer}>
-        <div className={css.gridColumn}>
-          <Card />
-        </div>
-        <div className={css.gridColumn}>
-          <Card />
-        </div>
-        <div className={css.gridColumn}>
-          <Card />
-        </div>
-        <div className={css.gridColumn}>
-          <Card />
-        </div>
-        <div className={css.gridColumn}>
-          <Card />
-        </div>
-        <div className={css.gridColumn}>
-          <Card />
-        </div>
-        <div className={css.gridColumn}>
-          <Card />
-        </div>
+        {alunosData.map((item) => (
+          <div className={css.gridColumn} key={item.id}>
+            <Card array={item} />
+          </div>
+        ))}
       </div>
     </div>
   );
