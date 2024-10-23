@@ -1,10 +1,17 @@
-.buttonContainer {
-  width: 100%;
-  padding: 0.7rem;
+#buttonContainer {
+  padding: 0.9rem;
+  max-width: 15rem;
   background-color: var(--primaryColor);
+  font-size: 0.9rem;
+
+  text-transform: none;
+  text-align: center;
+  font-weight: bold;
+
+  gap: 1rem;
 }
 
-.buttonContainerMargin {
+#buttonContainerMargin {
   width: 100%;
   padding: 0.7rem;
   background-color: var(--primaryColor);
