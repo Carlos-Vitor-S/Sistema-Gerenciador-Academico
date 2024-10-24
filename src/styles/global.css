@@ -14,7 +14,8 @@ body {
 
 /*Paleta de cores*/
 :root {
-  --primaryColor: #4b94f2;
+  /*--primaryColor: #4b94f2;*/
+  --primaryColor: #092139;
   --backgroundColor: #eee8e8;
   --backgroundColorLight: #f9fafb;
   --inputColor: #f6f6f6;

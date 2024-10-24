@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+  background-color: var();
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageContainer {
+  padding: 3rem;
+}
+
+.container img {
+  width: 100%;
+  height: fit-content;
+}
