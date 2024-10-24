@@ -15,7 +15,7 @@ export default function NavBar() {
           <Link
             to="/alunos"
             className={
-              location.pathname == "/alunos"
+              location.pathname === "/alunos"
                 ? css.activeNavBarItem
                 : css.linkItem
             }
@@ -27,7 +27,7 @@ export default function NavBar() {
           <Link
             to="/cursos"
             className={
-              location.pathname == "/cursos"
+              location.pathname === "/cursos"
                 ? css.activeNavBarItem
                 : css.linkItem
             }
@@ -39,7 +39,7 @@ export default function NavBar() {
           <Link
             to="/contratos"
             className={
-              location.pathname == "/contratos"
+              location.pathname === "/contratos"
                 ? css.activeNavBarItem
                 : css.linkItem
             }
@@ -51,7 +51,7 @@ export default function NavBar() {
           <Link
             to="/relatorios"
             className={
-              location.pathname == "/relatorios"
+              location.pathname === "/relatorios"
                 ? css.activeNavBarItem
                 : css.linkItem
             }

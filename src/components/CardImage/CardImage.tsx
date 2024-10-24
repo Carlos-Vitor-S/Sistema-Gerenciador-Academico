@@ -1,7 +1,5 @@
 import { Paper } from "@mui/material";
 import React from "react";
-import courseImage from "../../assets/course-image1.jpg";
-import courseImage2 from "../../assets/circuito.jpg";
 import courseImage3 from "../../assets/design.jpg";
 import css from "./CardImage.module.css";
 export default function CardImage({
