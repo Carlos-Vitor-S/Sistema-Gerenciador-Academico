@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .gridContainer {
@@ -18,11 +18,6 @@
   .gridContainer {
     display: grid;
     grid-template-columns: 1fr;
-  }
-
-  .container {
-    width: 100%;
-    padding: 1rem;
   }
 
   .gridColumn {

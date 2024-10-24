@@ -1,14 +1,19 @@
 import css from "./Navbar.module.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import logo from "../../assets/fabtech-logo-white-small.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 export default function NavBar() {
   const location = useLocation();
+  const navigate = useNavigate();
+  function onClickNavigate() {
+    navigate("/");
+  }
+
   return (
     <div className={css.container}>
       <div className={css.leftContent}>
         <span className={css.logoContainer}>
-          <img src={logo} alt={logo} />
+          <img src={logo} alt={logo} onClick={onClickNavigate} />
         </span>
 
         <span className={css.navBarItem}>
