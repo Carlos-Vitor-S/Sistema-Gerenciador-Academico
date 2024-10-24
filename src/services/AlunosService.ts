@@ -2,7 +2,6 @@ import axios from "axios";
 import { Aluno } from "../interfaces/aluno";
 
 export default function AlunosService() {
-  const url = "https://sistemaescolar-production.up.railway.app";
   const api = axios.create({
     baseURL: process.env.REACT_APP_API_BASE_URL,
   });
