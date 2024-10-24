@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import NavBar from "./components/Navbar/Navbar";
 import { Outlet, useLocation } from "react-router-dom";
 
@@ -6,10 +6,10 @@ const Layout = () => {
   //Pegar rota atual
   const location = useLocation();
   //Aparecer a navbar menos na rota de /login
-  const [hideNav, setHideNav] = useState(location.pathname === "/login");
+  //const [hideNav, setHideNav] = useState(location.pathname === "/login");
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100dvh" }}>
-      {location.pathname != "/login" && (
+      {location.pathname !== "/login" && (
         <header>
           <NavBar />
         </header>
