@@ -11,6 +11,11 @@
   gap: 1rem;
 }
 
+#buttonContainer:hover {
+  background-color: var(--primaryColorHover);
+  transition: 0.2s ease-out;
+}
+
 #buttonContainerMargin {
   width: 100%;
   padding: 0.7rem;

@@ -41,11 +41,6 @@ const routes = createBrowserRouter([
         path: "/relatorios",
         element: <Relatorios />,
       },
-
-      {
-        path: "/create-aluno",
-        element: <CreateAluno />,
-      },
     ],
   },
 ]);

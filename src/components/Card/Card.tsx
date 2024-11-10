@@ -7,7 +7,13 @@ import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import IconButton from "@mui/material/IconButton";
 import { Aluno } from "../../interfaces/aluno";
-export default function Card({ array }: { array: Aluno }) {
+
+interface CardProps {
+  array: Aluno;
+  onClickRemove: () => void;
+}
+
+export default function Card({ array, onClickRemove }: CardProps) {
   return (
     <div className={css.cardContainer}>
       <div className={css.cardContent}>
@@ -37,8 +43,12 @@ export default function Card({ array }: { array: Aluno }) {
           </div>
         </div>
         <span className={css.cardButtonAction}>
-          <EditOutlinedIcon fontSize="small" />
-          <IconButton aria-label="delete" className={css.iconAction}>
+          <EditOutlinedIcon fontSize="small" id={css.editIcon} />
+          <IconButton
+            aria-label="delete"
+            className={css.iconAction}
+            onClick={onClickRemove}
+          >
             <DeleteForeverOutlinedIcon fontSize="small" />
           </IconButton>
         </span>

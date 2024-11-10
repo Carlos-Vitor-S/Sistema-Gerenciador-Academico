@@ -25,4 +25,7 @@ body {
   --strokeColor: #7a7676;
   --hoverColorLight: #f1f3f5;
   --hoverColor: #b3e5fc;
+  --primaryColorHover: #10365e;
+  --snackBarColorLight: #7db4eb;
+  --snackBarColor: #15487c;
 }

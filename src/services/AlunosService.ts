@@ -27,5 +27,15 @@ export default function AlunosService() {
     }
   };
 
-  return { getAlunos, createAluno };
+  const removeAluno = async (id: string) => {
+    try {
+      const response = await api.delete(`/aluno/${id}`);
+      return response.data;
+    } catch (error) {
+      console.log("Erro de delete", error);
+      throw error;
+    }
+  };
+
+  return { getAlunos, createAluno, removeAluno };
 }
