@@ -27,6 +27,7 @@ const CreateAluno = ({
       const alunoService = AlunosService();
       if (aluno) {
         const result = await alunoService.editAluno(aluno.id, data);
+        console.log("Editou os daddos", result);
       } else {
         const result = await alunoService.createAluno(data);
         console.log("Cadastrou os daddos", result);
