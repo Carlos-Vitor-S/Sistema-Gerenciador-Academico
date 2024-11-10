@@ -1,7 +1,10 @@
-import { Paper } from "@mui/material";
+import { IconButton, Paper } from "@mui/material";
 import React from "react";
 import courseImage3 from "../../assets/design.jpg";
 import css from "./CardImage.module.css";
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+
 export default function CardImage({
   image = courseImage3,
 }: {
@@ -27,6 +30,12 @@ export default function CardImage({
           <span>Carga Horaria 40 Horas</span>
           <span>Pré-Requisitos: Nenhum</span>
           <span>Curso de Tecnologia</span>
+          <span className={css.cardButtonAction}>
+            <EditOutlinedIcon fontSize="small" id={css.editIcon} />
+            <IconButton aria-label="delete" className={css.iconAction}>
+              <DeleteForeverOutlinedIcon fontSize="small" />
+            </IconButton>
+          </span>
         </section>
       </div>
     </Paper>

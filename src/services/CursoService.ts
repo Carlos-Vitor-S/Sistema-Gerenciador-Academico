@@ -1,14 +1,15 @@
 import axios from "axios";
-import { Aluno } from "../interfaces/aluno";
 
-export default function AlunosService() {
+import { Curso } from "../interfaces/curso";
+
+export default function CursosService() {
   const api = axios.create({
     baseURL: process.env.REACT_APP_API_BASE_URL,
   });
 
-  const createAluno = async (aluno: Aluno) => {
+  const createCurso = async (curso: Curso) => {
     try {
-      const response = await api.post("/aluno", aluno);
+      const response = await api.post("/curso", curso);
       return response.data;
     } catch (error) {
       console.log("Erro de post", error);
@@ -16,9 +17,9 @@ export default function AlunosService() {
     }
   };
 
-  const getAlunos = async () => {
+  const getCursos = async () => {
     try {
-      const response = await api.get("/aluno");
+      const response = await api.get("/curso");
       console.log(response.status);
       return response.data;
     } catch (error) {
@@ -27,9 +28,9 @@ export default function AlunosService() {
     }
   };
 
-  const removeAluno = async (id: string) => {
+  const removeCurso = async (id: string) => {
     try {
-      const response = await api.delete(`/aluno/${id}`);
+      const response = await api.delete(`/curso/${id}`);
       return response.data;
     } catch (error) {
       console.log("Erro de delete", error);
@@ -37,9 +38,9 @@ export default function AlunosService() {
     }
   };
 
-  const editAluno = async (id: string, aluno: Aluno) => {
+  const editCurso = async (id: string, curso: Curso) => {
     try {
-      const response = await api.put(`/aluno/${id}`, aluno);
+      const response = await api.put(`/curso/${id}`, curso);
       return response.data;
     } catch (error) {
       console.log("Erro de Edit", error);
@@ -47,5 +48,5 @@ export default function AlunosService() {
     }
   };
 
-  return { getAlunos, createAluno, removeAluno, editAluno };
+  return { createCurso, getCursos, removeCurso, editCurso };
 }

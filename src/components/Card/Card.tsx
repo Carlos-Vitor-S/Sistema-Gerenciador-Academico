@@ -11,9 +11,10 @@ import { Aluno } from "../../interfaces/aluno";
 interface CardProps {
   array: Aluno;
   onClickRemove: () => void;
+  onClickEdit: () => void;
 }
 
-export default function Card({ array, onClickRemove }: CardProps) {
+export default function Card({ array, onClickRemove, onClickEdit }: CardProps) {
   return (
     <div className={css.cardContainer}>
       <div className={css.cardContent}>
@@ -43,7 +44,11 @@ export default function Card({ array, onClickRemove }: CardProps) {
           </div>
         </div>
         <span className={css.cardButtonAction}>
-          <EditOutlinedIcon fontSize="small" id={css.editIcon} />
+          <EditOutlinedIcon
+            fontSize="small"
+            id={css.editIcon}
+            onClick={onClickEdit}
+          />
           <IconButton
             aria-label="delete"
             className={css.iconAction}

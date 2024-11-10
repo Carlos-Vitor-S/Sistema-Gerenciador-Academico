@@ -48,6 +48,7 @@
   flex-direction: column;
   color: var(--fontColor);
   gap: 0.1rem;
+  position: relative;
 }
 
 .cardTitle {
@@ -55,4 +56,18 @@
   font-weight: bold;
   color: var(--fontColorDark);
   margin-bottom: 0.3rem;
+}
+
+.cardButtonAction {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 0;
+  bottom: 0;
+  margin: 0.4rem;
+  color: var(--fontColorDark);
+}
+
+.iconAction:hover {
+  color: red;
 }
