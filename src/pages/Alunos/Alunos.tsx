@@ -18,7 +18,7 @@ const Alunos = () => {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-
+  const [alunoEditado, setAlunoEditado] = useState<Aluno | null>(null);
   //Selecionar todos alunos e listar
   useEffect(() => {
     const fetchAlunos = async () => {
@@ -50,8 +50,16 @@ const Alunos = () => {
     setOpenSnackbar(false);
   }
   //Funções para abrir e fechar o modal do form
-  const handleFormOpenModal = () => setOpenModal(true);
-  const handleFormCloseModal = () => setOpenModal(false);
+
+  const handleFormOpenModal = (aluno?: Aluno) => {
+    setAlunoEditado(aluno || null);
+    setOpenModal(true);
+  };
+
+  const handleFormCloseModal = () => {
+    setOpenModal(false);
+    setAlunoEditado(null);
+  };
 
   //Atualizar array de Alunos
   const atualizarGetAlunos = async () => {
@@ -59,7 +67,11 @@ const Alunos = () => {
       const data = await alunosService.getAlunos();
       setAlunosData(data);
       setOpenSnackbar(true);
-      setSnackbarMessage("Aluno cadastrado com sucesso!");
+      setSnackbarMessage(
+        alunoEditado
+          ? "Aluno atualizado com sucesso!"
+          : "Aluno cadastrado com sucesso!"
+      );
     } catch (error) {
       console.error("Erro ao buscar alunos:", error);
     }
@@ -75,18 +87,20 @@ const Alunos = () => {
       <FormModal
         open={openModal}
         onClose={handleFormCloseModal}
-        title="Cadastro de Aluno"
+        title={alunoEditado ? "Editar Aluno" : "Cadastrar Aluno"}
       >
         <CreateAluno
+          aluno={alunoEditado}
           onCadastroSuccess={atualizarGetAlunos}
           onClose={handleFormCloseModal}
+          buttonLabel={alunoEditado ? "Editar Aluno" : "Cadastrar Aluno"}
         />
       </FormModal>
 
       <div style={{ padding: "0.8rem" }}>
         <HeaderActions
           label={"Cadastrar Aluno"}
-          onClickShowForm={handleFormOpenModal}
+          onClickShowForm={() => handleFormOpenModal()}
         />
       </div>
       <div className={css.gridContainer}>
@@ -95,6 +109,7 @@ const Alunos = () => {
             <Card
               array={item}
               onClickRemove={() => onClickRemoveAluno(item.id)}
+              onClickEdit={() => handleFormOpenModal(item)}
             />
           </div>
         ))}
