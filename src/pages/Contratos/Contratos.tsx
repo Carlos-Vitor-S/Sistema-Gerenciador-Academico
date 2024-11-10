@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Contratos() {
+import { Button, TextField } from "@mui/material";
+import FormModal from "../../components/FormModal/FormModal";
+import CreateAluno from "../CreateAluno/CreateAluno";
+
+export default function Contratos() {
   return <div>Contratos</div>;
 }
-
-export default Contratos;
