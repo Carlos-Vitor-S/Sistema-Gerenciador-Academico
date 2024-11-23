@@ -46,7 +46,7 @@
   color: var(--fontColor);
 }
 
-img {
+.imageContainer img {
   width: 100%;
   max-width: 20rem;
 }
