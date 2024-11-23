@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import css from "./Alunos.module.css";
 import Card from "../../components/Card/Card";
 import { Aluno } from "../../interfaces/aluno";
@@ -7,22 +7,47 @@ import HeaderActions from "../../components/HeaderActions/HeaderActions";
 import CustomSnackBar from "../../components/CustomSnackBar/CustomSnackBar";
 import Paginator from "../../components/Paginator/Paginator";
 import FormModal from "../../components/FormModal/FormModal";
-import CreateAluno from "../CreateAluno/CreateAluno";
 
-const Alunos = () => {
-  //Serviço de Aluno
-  const alunosService = AlunosService();
+import { SnackbarContext } from "../../store/SnackBarContextProvider";
+import { FormModalContext } from "../../store/FormModalContextProvider";
+import { useForm } from "react-hook-form";
+import CustomForm from "../../components/CustomForm/CustomForm";
+
+export default function Alunos() {
+  const { reset } = useForm<Aluno>();
+  const inputFields = [
+    { label: "Nome", name: "nome" },
+    { label: "CPF", name: "cpf" },
+    { label: "Email", name: "email" },
+    { label: "Telefone", name: "telefone" },
+    { label: "CEP", name: "endereco.cep" },
+    { label: "UF", name: "endereco.uf" },
+    { label: "Cidade", name: "endereco.cidade" },
+    { label: "Logradouro", name: "endereco.logradouro" },
+    { label: "Bairro", name: "endereco.bairro" },
+    { label: "Número", name: "endereco.numero", type: "number" },
+    { label: "Complemento", name: "endereco.complemento" },
+  ];
+
+  //Contexts
+  const { handleCloseModal, handleOpenModal } = useContext(FormModalContext);
+  const {
+    handleCloseSnackbar,
+    handleOpenSnackbar,
+    setSnackbarMessage,
+    snackbarMessage,
+    isSnackBarOpen,
+  } = useContext(SnackbarContext);
 
   //States
   const [alunosData, setAlunosData] = useState<Aluno[]>([]);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
-  const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
   const [alunoEditado, setAlunoEditado] = useState<Aluno | null>(null);
+
   //Selecionar todos alunos e listar
   useEffect(() => {
     const fetchAlunos = async () => {
       try {
+        const alunosService = AlunosService();
         const data = await alunosService.getAlunos();
         setAlunosData(data);
       } catch (error) {
@@ -30,43 +55,40 @@ const Alunos = () => {
       }
     };
     fetchAlunos();
-  }, [alunosService]);
+  }, []);
 
   //Remover aluno por id
   function onClickRemoveAluno(id: string) {
     try {
+      const alunosService = AlunosService();
       alunosService.removeAluno(id);
       setAlunosData((prev) => prev.filter((aluno) => aluno.id !== id));
-      setOpenSnackbar(true);
+      handleOpenSnackbar();
       setSnackbarMessage("Aluno excluído com sucesso!");
     } catch (error) {
+      handleOpenSnackbar();
       setSnackbarMessage("Erro ao excluir aluno");
-      setOpenSnackbar(true);
     }
   }
 
-  //Função para fechar Snackbar
-  function handleCloseSnackBar() {
-    setOpenSnackbar(false);
-  }
   //Funções para abrir e fechar o modal do form
-
   const handleFormOpenModal = (aluno?: Aluno) => {
     setAlunoEditado(aluno || null);
-    setOpenModal(true);
+    handleOpenModal();
   };
 
   const handleFormCloseModal = () => {
-    setOpenModal(false);
+    handleCloseModal();
     setAlunoEditado(null);
   };
 
   //Atualizar array de Alunos
   const atualizarGetAlunos = async () => {
     try {
+      const alunosService = AlunosService();
       const data = await alunosService.getAlunos();
       setAlunosData(data);
-      setOpenSnackbar(true);
+      handleOpenSnackbar();
       setSnackbarMessage(
         alunoEditado
           ? "Aluno atualizado com sucesso!"
@@ -77,27 +99,43 @@ const Alunos = () => {
     }
   };
 
+  //Registrar Form Alunos
+  const onSubmit = async (data: Aluno) => {
+    try {
+      const alunoService = AlunosService();
+      if (alunoEditado) {
+        const result = await alunoService.editAluno(alunoEditado.id, data);
+        console.log("Editou os daddos", result);
+      } else {
+        const result = await alunoService.createAluno(data);
+        console.log("Cadastrou os daddos", result);
+      }
+
+      reset();
+      atualizarGetAlunos();
+      handleFormCloseModal();
+    } catch (error) {
+      console.error("Erro ao cadastrar aluno:", error);
+    }
+  };
+
   return (
     <div className={css.container}>
       <CustomSnackBar
-        open={openSnackbar}
+        open={isSnackBarOpen}
         message={snackbarMessage}
-        onClose={handleCloseSnackBar}
+        onClose={handleCloseSnackbar}
       />
-      <FormModal
-        open={openModal}
-        onClose={handleFormCloseModal}
-        title={alunoEditado ? "Editar Aluno" : "Cadastrar Aluno"}
-      >
-        <CreateAluno
-          aluno={alunoEditado}
-          onCadastroSuccess={atualizarGetAlunos}
-          onClose={handleFormCloseModal}
+      <FormModal title={alunoEditado ? "Editar Aluno" : "Cadastrar Aluno"}>
+        <CustomForm
           buttonLabel={alunoEditado ? "Editar Aluno" : "Cadastrar Aluno"}
+          defaultValues={alunoEditado ? alunoEditado : {}}
+          inputFields={inputFields}
+          onSubmit={onSubmit}
         />
       </FormModal>
 
-      <div style={{ padding: "0.8rem" }}>
+      <div style={{ padding: "0.8rem", width: "100%" }}>
         <HeaderActions
           label={"Cadastrar Aluno"}
           onClickShowForm={() => handleFormOpenModal()}
@@ -119,6 +157,4 @@ const Alunos = () => {
       </footer>
     </div>
   );
-};
-
-export default Alunos;
+}

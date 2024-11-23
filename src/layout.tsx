@@ -1,6 +1,7 @@
-import React from "react";
-import NavBar from "./components/Navbar/Navbar";
 import { Outlet, useLocation } from "react-router-dom";
+import CustomToolBar from "./components/CustomToolBar/CustomToolbar";
+import FormModalContextProvider from "./store/FormModalContextProvider";
+import SnackbarContextProvider from "./store/SnackBarContextProvider";
 
 const Layout = () => {
   //Pegar rota atual
@@ -9,14 +10,14 @@ const Layout = () => {
   //const [hideNav, setHideNav] = useState(location.pathname === "/login");
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100dvh" }}>
-      {location.pathname !== "/login" && (
-        <header>
-          <NavBar />
-        </header>
-      )}
+      {location.pathname !== "/login" && <CustomToolBar />}
 
       <main style={{ display: "flex", flex: 1 }}>
-        <Outlet />
+        <FormModalContextProvider>
+          <SnackbarContextProvider>
+            <Outlet />
+          </SnackbarContextProvider>
+        </FormModalContextProvider>
       </main>
     </div>
   );

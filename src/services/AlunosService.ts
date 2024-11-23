@@ -19,7 +19,6 @@ export default function AlunosService() {
   const getAlunos = async () => {
     try {
       const response = await api.get("/aluno");
-      console.log(response.status);
       return response.data;
     } catch (error) {
       console.log("Erro de Get", error);

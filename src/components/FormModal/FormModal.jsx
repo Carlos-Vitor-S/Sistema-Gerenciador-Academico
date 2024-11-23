@@ -7,7 +7,9 @@ import {
   Button,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-export default function FormModal({ open, onClose, children, title }) {
+import { FormModalContext } from "../../store/FormModalContextProvider";
+import { useContext } from "react";
+export default function FormModal({ children, title }) {
   const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
     textAlign: "center",
     backgroundColor: "var(--primaryColor)",
@@ -23,12 +25,20 @@ export default function FormModal({ open, onClose, children, title }) {
     fontWeight: "bold",
   }));
 
+  const { handleCloseModal, isModalOpen } = useContext(FormModalContext);
+
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
+    <Dialog
+      open={isModalOpen}
+      onClose={handleCloseModal}
+      fullWidth
+      maxWidth="sm"
+      disableEnforceFocus
+    >
       <StyledDialogTitle>{title}</StyledDialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        <StyledButton onClick={onClose}>Fechar</StyledButton>
+        <StyledButton onClick={handleCloseModal}>Fechar</StyledButton>
       </DialogActions>
     </Dialog>
   );

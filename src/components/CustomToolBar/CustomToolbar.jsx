@@ -1,45 +1,79 @@
-import * as React from "react";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MenuIcon from "@mui/icons-material/Menu";
+import { styled } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
+import Container from "@mui/material/Container";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import Toolbar from "@mui/material/Toolbar";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import logo from "../../assets/fabtech-logo-white-small.png";
+import css from "./CustomToolBar.module.css";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["Alunos", "Cursos", "Contratos", "Relatorios"];
+const settings = ["Logout"];
 
-function CustomToolBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+export default function CustomToolBar() {
+  const InactiveButton = styled(Button)({
+    textTransform: "none",
+    fontSize: "0.95rem",
+    color: "var(--fontColorLight)",
+
+    "&:hover": {
+      backgroundColor: "var(--snackBarColor)",
+      transition: "0.8s ease-in-out",
+    },
+  });
+
+  const ActiveButton = styled(Button)({
+    textTransform: "none",
+    fontSize: "0.95rem",
+    color: "var(--fontColorLight)",
+    backgroundColor: "var(--snackBarColor)",
+  });
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [openDrawer, setOpenDrawer] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
+  const handleToggleDrawer = () => {
+    setOpenDrawer(!openDrawer);
+  };
+
+  function onClickNavigate(page) {
+    navigate(`/${page.toLowerCase()}`);
+    setOpenDrawer(false);
+  }
+
+  function onClickNavegateHome() {
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
+  }
+
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: "var(--primaryColor)" }}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters >
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+        <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
@@ -55,44 +89,91 @@ function CustomToolBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            <img src={logo} alt="Logo" onClick={onClickNavegateHome} />
           </Typography>
 
+          {/* Menu para telas pequenas */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="open navigation menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={handleToggleDrawer}
               color="inherit"
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
+
+            {/* Drawer para telas pequenas */}
+            <Drawer
+              anchor="left"
+              open={openDrawer}
+              onClose={handleToggleDrawer}
+              sx={{
+                display: { xs: "block", md: "none" },
+                width: 250,
+                "& .MuiDrawer-paper": {
+                  width: 250,
+                  backgroundColor: "var(--primaryColor)",
+                  color: "var(--fontColorLight)",
+                },
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: "block", md: "none" } }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+              <Box
+                sx={{
+                  width: 250,
+                  padding: "16px",
+                  backgroundColor: "var(--primaryColor)",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "white",
+                    marginBottom: "16px",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Opções
+                </Typography>
+
+                <List>
+                  {pages.map((page) => {
+                    const isActive =
+                      location.pathname === `/${page.toLowerCase()}`;
+                    return isActive ? (
+                      <ListItem
+                        button
+                        key={page}
+                        onClick={() => onClickNavigate(page)}
+                        sx={{ backgroundColor: "var(--snackBarColor)" }}
+                      >
+                        <ListItemText primary={page} />
+                      </ListItem>
+                    ) : (
+                      <ListItem
+                        button
+                        key={page}
+                        onClick={() => onClickNavigate(page)}
+                        sx={{
+                          "&:hover": {
+                            backgroundColor: "var(--snackBarColor)",
+                            transition: "0.8s ease-in-out",
+                            cursor: "pointer",
+                          },
+                        }}
+                      >
+                        <ListItemText primary={page} />
+                      </ListItem>
+                    );
+                  })}
+                </List>
+              </Box>
+            </Drawer>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+
           <Typography
             variant="h5"
             noWrap
@@ -109,23 +190,36 @@ function CustomToolBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            <img src={logo} alt="Logo" onClick={onClickNavegateHome} />
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex", gap: "0.5rem" },
+            }}
+          >
+            {pages.map((page) => {
+              const isActive = location.pathname === `/${page.toLowerCase()}`;
+              return isActive ? (
+                <ActiveButton key={page} onClick={() => onClickNavigate(page)}>
+                  {page}
+                </ActiveButton>
+              ) : (
+                <InactiveButton
+                  key={page}
+                  onClick={() => onClickNavigate(page)}
+                >
+                  {page}
+                </InactiveButton>
+              );
+            })}
           </Box>
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <AccountCircleIcon fontSize="large" className={css.avatar} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -158,4 +252,3 @@ function CustomToolBar() {
     </AppBar>
   );
 }
-export default CustomToolBar;

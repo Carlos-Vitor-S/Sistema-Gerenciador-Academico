@@ -4,12 +4,21 @@ import courseImage3 from "../../assets/design.jpg";
 import css from "./CardImage.module.css";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { Curso } from "../../interfaces/curso";
+
+interface CardImageType {
+  image: string;
+  arrayData: Curso;
+  onClickRemove: () => void;
+  onClickEdit: () => void;
+}
 
 export default function CardImage({
-  image = courseImage3,
-}: {
-  image?: string;
-}) {
+  image,
+  arrayData,
+  onClickRemove,
+  onClickEdit,
+}: CardImageType) {
   return (
     <Paper
       elevation={1}
@@ -22,17 +31,25 @@ export default function CardImage({
         <div className={css.imageContainer}>
           <img src={image} alt={image} />
           <div className={css.codContainer}>
-            <span className={css.codContent}>Cod 0001</span>
+            <span className={css.codContent}>Cod 0{arrayData.id}</span>
           </div>
         </div>
         <section className={css.cardInfoContainer}>
-          <span className={css.cardTitle}>Sistemas de Informações</span>
-          <span>Carga Horaria 40 Horas</span>
-          <span>Pré-Requisitos: Nenhum</span>
-          <span>Curso de Tecnologia</span>
+          <span className={css.cardTitle}>{arrayData.nome}</span>
+          <span>Carga Horaria: {arrayData.cargaHorario} Horas</span>
+          <span>Pré-Requisitos: {arrayData.PreRequisitos}</span>
+          <span>{arrayData.descricao}</span>
           <span className={css.cardButtonAction}>
-            <EditOutlinedIcon fontSize="small" id={css.editIcon} />
-            <IconButton aria-label="delete" className={css.iconAction}>
+            <EditOutlinedIcon
+              fontSize="small"
+              id={css.editIcon}
+              onClick={onClickEdit}
+            />
+            <IconButton
+              aria-label="delete"
+              className={css.iconAction}
+              onClick={onClickRemove}
+            >
               <DeleteForeverOutlinedIcon fontSize="small" />
             </IconButton>
           </span>

@@ -1,30 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import css from "./HeaderActions.module.css";
-import { TextField } from "@mui/material";
+import {
+  TextField,
+  IconButton,
+  InputAdornment,
+  useMediaQuery,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import InputAdornment from "@mui/material/InputAdornment";
 import CustomButton from "../CustomButton/CustomButton";
 import AddIcon from "@mui/icons-material/Add";
+
 function HeaderActions({ label, onClickShowForm = () => {} }) {
+  // Verifica se a tela é menor que 600px (pode ser ajustado para outras larguras)
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <div className={css.container}>
-      <TextField
-        id="outlined-basic"
-        label={"Buscar"}
-        type="text"
-        variant="outlined"
-        placeholder="Buscar"
-        className={css.inputField}
-        slotProps={{
-          input: {
-            endAdornment: (
-              <InputAdornment position="end">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          },
-        }}
-      />
+      {!isSmallScreen ? (
+        <TextField
+          id="outlined-basic"
+          label={"Buscar"}
+          type="text"
+          variant="outlined"
+          placeholder="Buscar"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className={css.inputField}
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            },
+          }}
+        />
+      ) : (
+        <IconButton
+          color="primary"
+          sx={{
+            backgroundColor: "var(--primaryColor)",
+            color: "var(--fontColorLight)",
+          }}
+        >
+          <SearchIcon />
+        </IconButton>
+      )}
+
       <CustomButton
         buttonLabel={label}
         isMargin={false}

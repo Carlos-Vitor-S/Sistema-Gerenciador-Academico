@@ -33,3 +33,9 @@ footer {
   justify-content: center;
   margin: 1rem;
 }
+
+@media (max-width: 593px) {
+  .container {
+    padding: 0rem;
+  }
+}
