@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import CardImage from "../../components/CardImage/CardImage";
 import css from "./Cursos.module.css";
-import courseImage1 from "../../assets/course-image1.jpg";
+
 import courseImage2 from "../../assets/design.jpg";
-import courseImage3 from "../../assets/segurança.jpg";
+
 import HeaderActions from "../../components/HeaderActions/HeaderActions";
 import { Curso } from "../../interfaces/curso";
 import CursosService from "../../services/CursoService";
