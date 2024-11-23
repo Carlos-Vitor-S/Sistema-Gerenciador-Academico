@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
-
+import logo from "../../assets/fabtech-logo.png";
 import css from "./Login.module.css";
 
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
     <div className={css.formContainer}>
       <div className={css.formContent}>
         <div className={css.imageContainer}>
-          <img src="/fabtechLogo.png" alt="" />
+          <img src={logo} alt="logo" />
         </div>
         <div className={css.inputGroup}>
           <div className={css.inputField}>
@@ -32,8 +32,9 @@ const Login = () => {
           <div className={css.inputField}>
             <TextField
               id="outlined-basic"
-              label="Email"
+              label="Senha"
               variant="outlined"
+              type="password"
               sx={{
                 backgroundColor: "var(--inputColor)",
                 width: "100%",

@@ -1,6 +1,5 @@
 import { IconButton, Paper } from "@mui/material";
 import React from "react";
-import courseImage3 from "../../assets/design.jpg";
 import css from "./CardImage.module.css";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
