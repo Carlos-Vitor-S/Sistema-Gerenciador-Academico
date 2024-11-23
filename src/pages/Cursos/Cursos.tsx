@@ -14,18 +14,6 @@ import { useForm } from "react-hook-form";
 import FormModal from "../../components/FormModal/FormModal";
 import CustomForm from "../../components/CustomForm/CustomForm";
 const Cursos = () => {
-  const imageData = [
-    {
-      image: courseImage1,
-    },
-
-    {
-      image: courseImage2,
-    },
-    {
-      image: courseImage3,
-    },
-  ];
   const inputFields = [
     { label: "Nome", name: "nome" },
     { label: "Carga Horária", name: "cargaHorario", type: "number" },
