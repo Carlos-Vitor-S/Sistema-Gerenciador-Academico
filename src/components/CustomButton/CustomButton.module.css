@@ -3,11 +3,9 @@
   max-width: 15rem;
   background-color: var(--primaryColor);
   font-size: 0.9rem;
-
   text-transform: none;
   text-align: center;
   font-weight: bold;
-
   gap: 1rem;
 }
 

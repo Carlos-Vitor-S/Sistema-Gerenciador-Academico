@@ -1,0 +1,9 @@
+.avatar {
+  color: var(--fontColorLight);
+}
+
+.avatar:hover {
+  cursor: pointer;
+  color: var(--hoverColor);
+  transition: 1s ease-out;
+}
