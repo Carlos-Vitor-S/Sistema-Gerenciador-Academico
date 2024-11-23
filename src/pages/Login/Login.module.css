@@ -22,6 +22,9 @@
 
 .imageContainer {
   margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .inputGroup {
@@ -41,4 +44,9 @@
 
 .inputCustom label {
   color: var(--fontColor);
+}
+
+img {
+  width: 100%;
+  max-width: 20rem;
 }
