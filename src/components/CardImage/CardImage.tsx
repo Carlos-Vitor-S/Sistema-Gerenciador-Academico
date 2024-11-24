@@ -4,6 +4,7 @@ import css from "./CardImage.module.css";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Curso } from "../../interfaces/curso";
+import { useNavigate } from "react-router-dom";
 
 interface CardImageType {
   image: string;
@@ -18,6 +19,13 @@ export default function CardImage({
   onClickRemove,
   onClickEdit,
 }: CardImageType) {
+  const navigate = useNavigate();
+  function handleCardClick() {
+    navigate(`/matricula/${arrayData.id}`, {
+      state: { course: arrayData },
+    });
+  }
+
   return (
     <Paper
       elevation={1}
@@ -26,7 +34,7 @@ export default function CardImage({
         borderRadius: "0.6rem",
       }}
     >
-      <div className={css.content}>
+      <div className={css.content} onClick={handleCardClick}>
         <div className={css.imageContainer}>
           <img src={image} alt={image} />
           <div className={css.codContainer}>

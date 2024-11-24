@@ -10,7 +10,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import CustomButton from "../CustomButton/CustomButton";
 import AddIcon from "@mui/icons-material/Add";
 
-function HeaderActions({ label, onClickShowForm = () => {} }) {
+function HeaderActions({
+  label,
+  onClickShowForm = () => {},
+  onClick = () => {},
+}) {
   // Verifica se a tela é menor que 600px (pode ser ajustado para outras larguras)
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
@@ -58,7 +62,10 @@ function HeaderActions({ label, onClickShowForm = () => {} }) {
         buttonLabel={label}
         isMargin={false}
         icon={<AddIcon />}
-        onClick={onClickShowForm}
+        onClick={() => {
+          onClickShowForm();
+          onClick();
+        }}
       />
     </div>
   );

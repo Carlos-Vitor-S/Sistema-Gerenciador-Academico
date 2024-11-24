@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
-import css from "./Alunos.module.css";
+import { useContext, useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
+import CustomSnackBar from "../../components/CustomSnackBar/CustomSnackBar";
+import FormModal from "../../components/FormModal/FormModal";
+import HeaderActions from "../../components/HeaderActions/HeaderActions";
+import Paginator from "../../components/Paginator/Paginator";
 import { Aluno } from "../../interfaces/aluno";
 import AlunosService from "../../services/AlunosService";
-import HeaderActions from "../../components/HeaderActions/HeaderActions";
-import CustomSnackBar from "../../components/CustomSnackBar/CustomSnackBar";
-import Paginator from "../../components/Paginator/Paginator";
-import FormModal from "../../components/FormModal/FormModal";
+import css from "./Alunos.module.css";
 
-import { SnackbarContext } from "../../store/SnackBarContextProvider";
-import { FormModalContext } from "../../store/FormModalContextProvider";
 import { useForm } from "react-hook-form";
 import CustomForm from "../../components/CustomForm/CustomForm";
+import { FormModalContext } from "../../store/FormModalContextProvider";
+import { SnackbarContext } from "../../store/SnackBarContextProvider";
 
 export default function Alunos() {
   const { reset } = useForm<Aluno>();
