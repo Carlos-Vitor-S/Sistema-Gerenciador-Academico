@@ -1,0 +1,12 @@
+.container {
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+
+  justify-content: center;
+}
+.cardHeader {
+  background-color: var(--primaryColor);
+  color: var(--fontColorLight);
+  text-align: center;
+}

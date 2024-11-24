@@ -1,18 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
-import CardImage from "../../components/CardImage/CardImage";
-import css from "./Cursos.module.css";
-
+import { useContext, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import courseImage2 from "../../assets/design.jpg";
-
+import CardImage from "../../components/CardImage/CardImage";
+import CustomForm from "../../components/CustomForm/CustomForm";
+import CustomSnackBar from "../../components/CustomSnackBar/CustomSnackBar";
+import FormModal from "../../components/FormModal/FormModal";
 import HeaderActions from "../../components/HeaderActions/HeaderActions";
 import { Curso } from "../../interfaces/curso";
 import CursosService from "../../services/CursoService";
-import CustomSnackBar from "../../components/CustomSnackBar/CustomSnackBar";
 import { FormModalContext } from "../../store/FormModalContextProvider";
 import { SnackbarContext } from "../../store/SnackBarContextProvider";
-import { useForm } from "react-hook-form";
-import FormModal from "../../components/FormModal/FormModal";
-import CustomForm from "../../components/CustomForm/CustomForm";
+import css from "./Cursos.module.css";
 const Cursos = () => {
   const inputFields = [
     { label: "Nome", name: "nome" },
@@ -30,6 +28,7 @@ const Cursos = () => {
     snackbarMessage,
     isSnackBarOpen,
   } = useContext(SnackbarContext);
+
   const { reset } = useForm<Curso>();
   const [cursosData, setCursosData] = useState<Curso[]>([]);
   const [cursoEditado, setCursoEditado] = useState<Curso | null>(null);

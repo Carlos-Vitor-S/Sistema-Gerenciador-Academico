@@ -1,0 +1,23 @@
+.cardHeader {
+  background-color: var(--primaryColor);
+  color: var(--fontColorLight);
+  text-align: center;
+}
+
+.subtitleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.codContainer {
+  background-color: var(--primaryColor);
+}
+.bodyItemTitle {
+  color: rebeccapurple;
+}
+.bodyItemTitle {
+  color: var(--fontColorDark);
+}
