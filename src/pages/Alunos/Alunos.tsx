@@ -58,7 +58,7 @@ export default function Alunos() {
   }, []);
 
   //Remover aluno por id
-  function onClickRemoveAluno(id: string) {
+  function onClickRemoveAluno(id: number) {
     try {
       const alunosService = AlunosService();
       alunosService.removeAluno(id);

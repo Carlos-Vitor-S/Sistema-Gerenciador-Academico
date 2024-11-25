@@ -26,7 +26,7 @@ export default function AlunosService() {
     }
   };
 
-  const removeAluno = async (id: string) => {
+  const removeAluno = async (id: number) => {
     try {
       const response = await api.delete(`/aluno/${id}`);
       return response.data;
@@ -36,7 +36,7 @@ export default function AlunosService() {
     }
   };
 
-  const editAluno = async (id: string, aluno: Aluno) => {
+  const editAluno = async (id: number, aluno: Aluno) => {
     try {
       const response = await api.put(`/aluno/${id}`, aluno);
       return response.data;

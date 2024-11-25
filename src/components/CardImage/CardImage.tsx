@@ -20,6 +20,7 @@ export default function CardImage({
   onClickEdit,
 }: CardImageType) {
   const navigate = useNavigate();
+
   function handleCardClick() {
     navigate(`/matricula/${arrayData.id}`, {
       state: { course: arrayData },
@@ -43,19 +44,25 @@ export default function CardImage({
         </div>
         <section className={css.cardInfoContainer}>
           <span className={css.cardTitle}>{arrayData.nome}</span>
-          <span>Carga Horaria: {arrayData.cargaHorario} Horas</span>
+          <span>Carga Horária: {arrayData.cargaHorario} Horas</span>
           <span>Pré-Requisitos: {arrayData.PreRequisitos}</span>
           <span>{arrayData.descricao}</span>
           <span className={css.cardButtonAction}>
             <EditOutlinedIcon
               fontSize="small"
               id={css.editIcon}
-              onClick={onClickEdit}
+              onClick={(event) => {
+                event.stopPropagation();
+                onClickEdit();
+              }}
             />
             <IconButton
               aria-label="delete"
               className={css.iconAction}
-              onClick={onClickRemove}
+              onClick={(event) => {
+                event.stopPropagation();
+                onClickRemove();
+              }}
             >
               <DeleteForeverOutlinedIcon fontSize="small" />
             </IconButton>

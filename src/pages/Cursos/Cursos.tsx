@@ -47,7 +47,7 @@ const Cursos = () => {
   }, []);
 
   //Remover Curso por id
-  function removeCursoById(id: string) {
+  function removeCursoById(id: number) {
     try {
       const cursoService = CursosService();
       cursoService.removeCurso(id);
