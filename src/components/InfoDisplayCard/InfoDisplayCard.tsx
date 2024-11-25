@@ -161,7 +161,6 @@ export default function InfoDisplayCard({
                 selected={selectedIndex === index}
                 onClick={(event) => handleListItemClick(event, index)}
               >
-                {/* ID do aluno (parte da string) */}
                 <Typography
                   style={{ textAlign: "left" }}
                   sx={{
@@ -173,14 +172,11 @@ export default function InfoDisplayCard({
                 >
                   {item.split(" - ")[0]}
                 </Typography>
-                {/* Nome do aluno */}
-                <ListItemText primary={item.split(" - ")[1]} />{" "}
-                {/* Exibe o nome */}
-                {/* Ícone de exclusão */}
+                <ListItemText primary={item.split(" - ")[1]} />
                 <IconButton
                   edge="end"
                   aria-label="delete"
-                  onClick={() => handleDeleteItem(item)} // Remove o item da lista
+                  onClick={() => handleDeleteItem(item)}
                 >
                   <DeleteIcon sx={{ color: "red" }} fontSize="small" />
                 </IconButton>

@@ -28,7 +28,7 @@ export default function CursosService() {
     }
   };
 
-  const removeCurso = async (id: string) => {
+  const removeCurso = async (id: number) => {
     try {
       const response = await api.delete(`/curso/${id}`);
       return response.data;
@@ -38,7 +38,7 @@ export default function CursosService() {
     }
   };
 
-  const editCurso = async (id: string, curso: Curso) => {
+  const editCurso = async (id: number, curso: Curso) => {
     try {
       const response = await api.put(`/curso/${id}`, curso);
       return response.data;

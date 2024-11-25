@@ -5,6 +5,7 @@ import InfoDisplayCard from "../../components/InfoDisplayCard/InfoDisplayCard";
 import { Aluno } from "../../interfaces/aluno";
 import AlunosService from "../../services/AlunosService";
 import css from "./Matricula.module.css";
+import CustomList from "../../components/CustomList/CustomList";
 
 export default function Matricula() {
   const [alunosData, setAlunosData] = useState<Aluno[]>([]);
@@ -26,15 +27,20 @@ export default function Matricula() {
   const course = location.state?.course;
 
   return (
-    <div className={css.container}>
-      <div className={css.imageContainer}>
-        <img src={courseImage} alt="Course Design" />
+    <div className={css.outerContainer}>
+      <div className={css.container}>
+        <div className={css.imageContainer}>
+          <img src={courseImage} alt="Course Design" />
+        </div>
+        <InfoDisplayCard
+          curso={course}
+          alunos={alunosData}
+          cardTitle="Informações"
+        />
       </div>
-      <InfoDisplayCard
-        curso={course}
-        alunos={alunosData}
-        cardTitle="Informações"
-      />
+      <div className={css.listContainer}>
+        <CustomList />
+      </div>
     </div>
   );
 }
